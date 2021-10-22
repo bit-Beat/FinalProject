@@ -1,0 +1,566 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js"> 
+    <head>
+        <style>
+            #for1 {
+                border: 10px black dotted;
+                display: inline-block;
+            }
+        </style>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>2조 Rainbow. 『신혼부부 임대주택 최적입지 선정 사이트』</title>
+        <meta name="description" content="GARO is a real-estate template">
+        <meta name="author" content="Kimarotec">
+        <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="/static/img/icon/favi.ico" type="image/x-icon">
+        <link rel="icon" href="/static/img/icon/favi.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/css/fontello.css">
+        <link href="/static/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+        <link href="/static/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+        <link href="/static/css/animate.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="/static/css/bootstrap-select.min.css"> 
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/icheck.min_all.css">
+        <link rel="stylesheet" href="/static/css/price-range.css">
+        <link rel="stylesheet" href="/static/css/owl.carousel.css">  
+        <link rel="stylesheet" href="/static/css/owl.theme.css">
+        <link rel="stylesheet" href="/static/css/owl.transitions.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+    <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- Body content -->
+        <nav class="navbar navbar-default ">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="/static/img/lovehouse.jpg" alt=""></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse yamm" id="navigation">
+                    <div class="button navbar-right">
+                        <button class="navbar-btn nav-button wow bounceInRight login" data-wow-delay="0.4s"><li class="nav-item">
+                          {% if user.is_authenticated %} {# 유저가 로그인 중이면 #}
+                          <a href="/logout/" class="nav-link">로그아웃</a>
+                          {% else %}
+                          <a href="/loginregister/" class="nav-link">로그인</a>
+                          {% endif %}
+                   </li>
+                    </div>
+
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                      {% if user.is_authenticated %} {# 유저가 로그인 중이면 #}
+                      <li class="wow fadeInDown" data-wow-delay="0.5s">
+                        {% if user.is_staff == 1 %}
+                          <a><span style="color:#fdc600;">[관리자] </span> {{user.username}}님 안녕하세요</a>
+                        {% else %}
+                          <a>{{user.username}}님 안녕하세요</a>
+                        {% endif %}
+                      </li>
+                      {% else %}
+                      <li class="wow fadeInDown" data-wow-delay="0.5s">
+                        <a></a>
+                      </li>
+                      {% endif %}
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/selection/">입지선정</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/news/5">뉴스</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/blog/">게시판</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.4s"><a href="/contact/">연락망</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <!-- End of nav bar -->
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">최적 입지 선정</h1>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End page header -->
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- property area -->
+        <div class="properties-area recent-property" style="background-color:#FFF;">
+          <div class="container">
+            <div class="row">
+
+              <div class="col-md-3 p0 padding-top-40">  
+                <div class="blog-asside-right pr0">
+
+                  <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">서울구 검색</h3>
+                    </div>
+                    <div class="panel-body search-widget">
+                      <form action="" id='search_form' name='search_form' method='post' class="form-inline">
+                        <fieldset>
+                          <div class="row">
+                              <div class="col-xs-12">
+                                  <select id="seoul_select" class="selectpicker"  title="지역 선택">
+                                      <option>강남구</option>
+                                      <option>강동구</option>
+                                      <option>강북구</option>
+                                      <option>강서구</option>
+                                      <option>관악구</option>
+                                      <option>광진구</option>
+                                      <option>구로구</option>
+                                      <option>금천구</option>
+                                      <option>노원구</option>
+                                      <option>도봉구</option>
+                                      <option>동대문구</option>
+                                      <option>동작구</option>
+                                      <option>마포구</option>
+                                      <option>서대문구</option>
+                                      <option>서초구</option>
+                                      <option>성동구</option>
+                                      <option>성북구</option>
+                                      <option>송파구</option>
+                                      <option>양천구</option>
+                                      <option>영등포구</option>
+                                      <option>용산구</option>
+                                      <option>은평구</option>
+                                      <option>종로구</option>
+                                      <option>중구</option>
+                                      <option>중랑구</option>
+                                  </select>
+                              </div>
+                          </div>
+                        </fieldset>                 
+                        <fieldset >
+                          <div class="row">
+                              <div class="col-xs-12">  
+                                  <input class="button btn largesearch-btn" value="검색" type="button" onclick="open_in_frame();">
+                              </div>  
+                          </div>
+                        </fieldset>
+                      </form>
+                      <div class="panel-body recent-property-widget">
+                        <ul>
+                            <li>
+                              <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                <img style="height: 40px;" src="/static/img/demo/매우좋음.png">
+                              </div>
+                              <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                <h6>매우좋음</h6>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                <img style="height: 40px;" src="/static/img/demo/좋음.png">
+                              </div>
+                              <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                <h6>좋음</h6>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                <img style="height: 40px;" src="/static/img/demo/보통.png">
+                              </div>
+                              <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                <h6>보통</h6>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                <img style="height: 40px;" src="/static/img/demo/부적합.png">
+                              </div>
+                              <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                <h6>부적합</h6>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                <img style="height: 40px;" src="/static/img/demo/미흡.png">
+                              </div>
+                              <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                <h6>미흡</h6>
+                              </div>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">추천 입지요인</h3>
+                    </div>
+                    <div class="panel-body recent-property-widget">
+                      <ul>
+                        <li>
+                          <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                            <img src="/static/img/demo/market.png">
+                          </div>
+                          <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                            <h6>전통시장</h6>
+                            <span >p-value : 0.0121</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                            <img src="/static/img/demo/subway2.png">
+                          </div>
+                          <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                            <h6>지하철</h6>
+                            <span >p-value : 0.0182</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                            <img src="/static/img/demo/gs25.png">
+                          </div>
+                          <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                            <h6>편의점</h6>
+                            <span >p-value : 0.0001</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default sidebar-menu wow fadeInLeft animated">
+                    <div class="panel-heading" style="border-top: 2px dotted #fdc600; padding-top: 40px;" >
+                      <h3 class="panel-title">입지검색</h3>
+                    </div>
+                    <div class="panel-body search-widget">
+                      <form action="/test/" method='POST' class="form-inline">
+                        <fieldset>
+                          <div class="row">
+                            <div class="col-xs-12" style="border-bottom: 1px double #fdc600; padding-bottom: 10px; margin-bottom: 10px;">
+                              <span>지역명</span>
+                                  <select id="location_features_name" name="location_features_name" class="selectpicker" title="지역선택">
+                                    <option>강남구</option>
+                                      <option>강동구</option>
+                                      <option>강북구</option>
+                                      <option>강서구</option>
+                                      <option>관악구</option>
+                                      <option>광진구</option>
+                                      <option>구로구</option>
+                                      <option>금천구</option>
+                                      <option>노원구</option>
+                                      <option>도봉구</option>
+                                      <option>동대문구</option>
+                                      <option>동작구</option>
+                                      <option>마포구</option>
+                                      <option>서대문구</option>
+                                      <option>서초구</option>
+                                      <option>성동구</option>
+                                      <option>성북구</option>
+                                      <option>송파구</option>
+                                      <option>양천구</option>
+                                      <option>영등포구</option>
+                                      <option>용산구</option>
+                                      <option>은평구</option>
+                                      <option>종로구</option>
+                                      <option>중구</option>
+                                      <option>중랑구</option>
+                                </select>
+                          </div>
+                            <div class="col-xs-12">
+                                <span>1순위</span>
+                                    <select id="location_features1" name="location_features" class="selectpicker" title="1순위 희망">
+                                      <option value='편의점'>편의점</option>
+                                      <option value='유치원'>유치원</option>
+                                      <option value='소방서'>소방서</option>
+                                      <option value='중학교'>중학교</option>
+                                      <option value='초등학교'>초등학교</option>
+                                      <option value='어린이집'>어린이집</option>
+                                      <option value='지하철'>지하철</option>
+                                      <option value='전통시장'>전통시장</option>
+                                      <option value='우체국'>우체국</option>
+                                  </select>
+                            </div>
+                            <div class="col-xs-12">
+                                <span>2순위</span>
+                                    <select id="location_features2" name="location_features" class="selectpicker" title="2순위 희망">
+                                      <option value='편의점'>편의점</option>
+                                      <option value='유치원'>유치원</option>
+                                      <option value='소방서'>소방서</option>
+                                      <option value='중학교'>중학교</option>
+                                      <option value='초등학교'>초등학교</option>
+                                      <option value='어린이집'>어린이집</option>
+                                      <option value='지하철'>지하철</option>
+                                      <option value='전통시장'>전통시장</option>
+                                      <option value='우체국'>우체국</option>
+                                    </select>
+                            </div>
+                            <div class="col-xs-12">
+                                <span>3순위</span>
+                                    <select id="location_features3" name="location_features" class="selectpicker" title="3순위 희망">
+                                      <option value='편의점'>편의점</option>
+                                      <option value='유치원'>유치원</option>
+                                      <option value='소방서'>소방서</option>
+                                      <option value='중학교'>중학교</option>
+                                      <option value='초등학교'>초등학교</option>
+                                      <option value='어린이집'>어린이집</option>
+                                      <option value='지하철'>지하철</option>
+                                      <option value='전통시장'>전통시장</option>
+                                      <option value='우체국'>우체국</option>
+                                    </select>
+                            </div>
+                          </div>
+                        </fieldset>  
+                        <fieldset >
+                          <div class="row">
+                              <div class="col-xs-12">  
+                                  <input class="button btn largesearch-btn" value="검색" type="button" onclick="fn_search();" >
+                              </div>  
+                          </div>
+                        </fieldset>
+                      </form>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-9 pr0 padding-top-40 properties-page">
+                <div class="col-md-12 clear" style="padding-top: 10px;">      
+
+                  <div class='blog-lst col-md-12'>
+                    <section>
+                      <div class='col-xs-10 page-subheader sorting pl0'>
+                        <div class='title-line wow fadeInRight animated'>
+                          <h5 class="s-property-title">입지 선정 결과</h5>   
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p style="color: #000000;" class='author-category' id='map_name'>지역명</p>
+                        </div>
+                        <div class='col-sm-6 right'>
+                          <p style="color: #000000;" class='date-comments' id='current_date' value='2021'></p>
+                        </div>
+                      </div>
+
+                      <iframe  id='map' style='border: 2px dotted #ffa500; width:100%; height:500px' src='/seoul/'></iframe>
+                    </section>
+                  </div>
+                  <div class='blog-lst col-md-12'>
+                    <br><br>
+                    <section>
+                      <div class='col-xs-10 page-subheader sorting pl0'>
+                        <div class='title-line wow fadeInRight animated'>
+                          <h5 class="s-property-title">입지요인 조건검색 결과</h5>   
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p style="color: #000000;" class='author-category' id='ml_map_name'>입지요인</p>
+                        </div>
+                        <div class='col-sm-6 right'>
+                          <p style="color: #000000;" class='date-comments' id='current_date2' value='2021'></p>
+                        </div>
+                      </div>
+
+                      <div id='fuck2' style='background-repeat: no-repeat; background-image: url("/static/img/demo/fuck2.png"); margin-bottom:10px; width:100%; height: 395px; border:2px dotted #ffa500; '></div>
+                    </section>
+                  </div>
+                  
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-area">
+          <div class="footer">
+            <div class="container">
+              <div class="row">
+                <h3>고려대학교 HRD 산학협력단 빅데이터 교육</h3>
+                <p>Korea HRD. Sejong Big-Data. 『Kwag Unil, Kim do-young, Sim myeong-jin, Pyeon do-jun』</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='footer-copy text-center'>
+          <div class="container">
+            <div class="row">
+              <div class="pull-left">
+                <span>Korea-HRD:Rainbow, All rights reserved 2021  </span>
+              </div>
+
+              <div class="bottom-menu pull-right">
+                <ul>
+                  <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">위로가기</a></li>
+                </ul>
+              </div>
+            </div>
+          </div> 
+        </div>
+        
+         
+        <!-- =============================================================================================================== -->
+      <script src="/static/js/modernizr-2.6.2.min.js"></script>
+      <script src="/static/js/jquery-1.10.2.min.js"></script>
+      <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+      <script src="/static/js/bootstrap-select.min.js"></script>
+      <script src="/static/js/bootstrap-hover-dropdown.js"></script>
+      <script src="/static/js/easypiechart.min.js"></script>
+      <script src="/static/js/jquery.easypiechart.min.js"></script>
+      <script src="/static/js/owl.carousel.min.js"></script>
+      <script src="/static/js/wow.js"></script>
+      <script src="/static/js/icheck.min.js"></script>
+      <script src="/static/js/price-range.js"></script>
+      <script src="/static/js/main.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      <script >
+        window.history.forward();
+        function noBack(){window.history.forward();}
+
+        var d = new Date(); 
+        var localeDate  =  d.toLocaleDateString(); 
+        var localeTime  =  d.toLocaleTimeString(); 
+        document.getElementById ( 'current_date' ).innerHTML = localeDate  +  "  "  +  localeTime; 
+        document.getElementById ( 'current_date2' ).innerHTML = localeDate  +  "  "  +  localeTime;
+
+        function fn_search() {          
+          var feature1 = document.getElementById('location_features1').value
+          var feature2 = document.getElementById('location_features2').value
+          var feature3 = document.getElementById('location_features3').value
+          var feature_name = document.getElementById('location_features_name').value
+
+          try{
+            if((feature1.length>0) & (feature2.length>0) & (feature3.length>0)){
+              if(feature_name.length > 0 ){
+                $.ajax({
+                  type: "GET",
+                  url: "/test/",
+                  async:false,
+                  data : {'feature1':feature1, 'feature2':feature2, 'feature3':feature3,'location_features_name':feature_name},
+                  datatype : 'json',
+                  success : function(result){
+                      $('#fuck2').html(result)
+                  }
+                })
+              }
+              else{
+                swal("경고!","지역명을 선택해주세요.");
+              }
+            }
+            else{
+              swal("경고!","입지요인을 모두 선택해주세요.");
+            }
+          } catch(e){
+              alert('error');
+          }
+        }   
+
+        function open_in_frame() {
+           gu = document.getElementById('seoul_select').value;
+           try{
+            if (gu == '송파구'){
+                  $('#map').attr('src','/songpa/')
+                  $('#map_name').text("송파구")
+               }
+               else if(gu == '도봉구'){
+                  $('#map').attr('src','/dobong/')
+                  $('#map_name').text("도봉구")
+               }
+               else if(gu == '동대문구'){
+                  $('#map').attr('src','/dongdaemoon/')
+                  $('#map_name').text("동대문구")
+               }else if(gu == '동작구'){
+                  $('#map').attr('src','/dongjak/')
+                  $('#map_name').text("동작구")
+               }else if(gu == '은평구'){
+                  $('#map').attr('src','/eunpyeong/')
+                  $('#map_name').text("은평구")
+               }else if(gu == '강북구'){
+                  $('#map').attr('src','/gangbook/')
+                  $('#map_name').text("강북구")
+               }else if(gu == '강동구'){
+                  $('#map').attr('src','/gangdong/')
+                  $('#map_name').text("강동구")
+               }else if(gu == '강남구'){
+                  $('#map').attr('src','/gangnam/')
+                  $('#map_name').text("강남구")
+               }else if(gu == '강서구'){
+                  $('#map').attr('src','/gangseo/')
+                  $('#map_name').text("강서구")
+               }else if(gu == '금천구'){
+                  $('#map').attr('src','/geumcheon/')
+                  $('#map_name').text("금천구")
+               }else if(gu == '구로구'){
+                  $('#map').attr('src','/guro/')
+                  $('#map_name').text("구로구")
+               }else if(gu == '관악구'){
+                  $('#map').attr('src','/gwanak/')
+                  $('#map_name').text("관악구")
+               }else if(gu == '광진구'){
+                  $('#map').attr('src','/gwangjin/')
+                  $('#map_name').text("광진구")
+               }else if(gu == '종로구'){
+                  $('#map').attr('src','/jongro/')
+                  $('#map_name').text("종로구")
+               }else if(gu == '중구'){
+                  $('#map').attr('src','/joong/')
+                  $('#map_name').text("중구")
+               }else if(gu == '중랑구'){
+                  $('#map').attr('src','/joongrang/')
+                  $('#map_name').text("중랑구")
+               }else if(gu == '마포구'){
+                  $('#map').attr('src','/mapo/')
+                  $('#map_name').text("마포구")
+               }else if(gu == '노원구'){
+                  $('#map').attr('src','/noone/')
+                  $('#map_name').text("노원구")
+               }else if(gu == '서초구'){
+                  $('#map').attr('src','/seocho/')
+                  $('#map_name').text("서초구")
+               }else if(gu == '서대문구'){
+                  $('#map').attr('src','/seodaemoon/')
+                  $('#map_name').text("서대문구")
+               }else if(gu == '성북구'){
+                  $('#map').attr('src','/seongbook/')
+                  $('#map_name').text("성북구")
+               }else if(gu == '성동구'){
+                  $('#map').attr('src','/seongdong/')
+                  $('#map_name').text("성동구")
+               }else if(gu == '양천구'){
+                  $('#map').attr('src','/yangcheon/')
+                  $('#map_name').text("양천구")
+               }else if(gu == '영등포구'){
+                  $('#map').attr('src','/yeongdeung/')
+                  $('#map_name').text("영등포구")
+               }else if(gu == '용산구'){
+                  $('#map').attr('src','/yongsan/')
+                  $('#map_name').text("용산구")
+               }
+           } catch(eeor) {
+               $('#map').attr('src','/seoul/')
+           }          
+        }
+      </script>
+    </body>
+</html>

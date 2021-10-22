@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>2조 Rainbow. 『신혼부부 임대주택 최적입지 선정 사이트』</title>
+        <meta name="description" content="GARO is a real-estate template">
+        <meta name="author" content="Kimarotec">
+        <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="hosrtcut icon" href="/static/img/icon/favi.ico" type="image/x-icon" />
+    <link rel="icon" href="/static/img/icon/favi.ico" type="image/x-icon" />
+
+        <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/css/fontello.css">
+        <link href="/static/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+        <link href="/static/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+        <link href="/static/css/animate.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="/static/css/bootstrap-select.min.css"> 
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/icheck.min_all.css">
+        <link rel="stylesheet" href="/static/css/price-range.css">
+        <link rel="stylesheet" href="/static/css/owl.carousel.css">  
+        <link rel="stylesheet" href="/static/css/owl.theme.css">
+        <link rel="stylesheet" href="/static/css/owl.transitions.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+    <body>
+
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- Body content -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button
+                  type="button"
+                  class="navbar-toggle collapsed"
+                  data-toggle="collapse"
+                  data-target="#navigation"
+                >
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="/static/img/lovehouse.jpg" alt=""/></a>
+              </div>
+      
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse yamm" id="navigation">
+                <div class="button navbar-right">
+                  <button
+                    class="navbar-btn nav-button wow bounceInRight login"
+                    data-wow-delay="0.45s"
+                  >
+                  <li class="nav-item">
+                    {% if user.is_authenticated %} {# 유저가 로그인 중이면 #}
+                    <a href="/logout/" class="nav-link">로그아웃</a>
+                    {% else %}
+                    <a href="/loginregister/" class="nav-link">로그인</a>
+                    {% endif %}
+                </button>
+             </li>
+                 
+                </div>
+                <ul class="main-nav nav navbar-nav navbar-right">
+                  <li class="wow fadeInDown" data-wow-delay="0.2s">
+                    <a class="" href="/selection/">입지선정</a>
+                  </li>
+                  <li class="wow fadeInDown" data-wow-delay="0.3s">
+                    <a class="" href="/news/5/">뉴스</a>
+                  </li>
+                  <li class="wow fadeInDown" data-wow-delay="0.3s">
+                    <a class="" href="/blog/">게시판</a>
+                  </li>
+                  <li class="wow fadeInDown" data-wow-delay="0.5s">
+                    <a href="/contact/">연락망</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+          </nav>
+        <!-- End of nav bar -->
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">로그인 및 회원가입 </h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+ 
+
+        <!-- register-area -->
+        <div class="register-area" style="background-color: rgb(249, 249, 249);">
+            <div class="container">
+
+                
+                <div class="col-md-6">
+                    <div class="box-for overflow">                         
+                        <div class="col-md-12 col-xs-12 login-blocks">
+                            <h2>로그인 </h2> 
+                            <form class="login" method="POST" action="/accounts/login/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="CbAqdDkrvLF1TcOPCLSb9vAokGwEQDkv1i4h0j3rDv5RahJIZZVMGZ2RO6JQ5mla">
+                                <p><label for="id_login">아이디:</label> <input type="text" name="login" placeholder="아이디" autocomplete="username" maxlength="150" required="" id="id_login"></p>
+                                <p><label for="id_password">비밀번호:</label> <input type="password" name="password" placeholder="비밀번호" autocomplete="current-password" required="" id="id_password"></p>
+                                <button style="display: block; margin-bottom: 20px;" class="primaryAction" type="submit">로그인</button>
+                            </form>
+                            <h2>소셜로그인 : </h2>     
+                            <p><a title="Naver" class="login-social" href="/accounts/naver/login/?process=login">Naver</a></p> 
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="box-for overflow">
+                        <div class="col-md-12 col-xs-12 register-blocks">
+                            <h2>회원가입 </h2> 
+                            <form class="signup" id="signup_form" method="post" action="/accounts/signup/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="oSI5E6YWYHPwxNWmfNXiZyxokQdFqzfN9VpKRisfqROeTHrqSpd0WZjWBW7EQ5O7">
+                                <p><label for="id_username">아이디:</label> <input type="text" name="username" placeholder="아이디" autocomplete="username" minlength="1" maxlength="150" required="" id="id_username"></p>
+                              <p><label for="id_email">이메일 (선택사항):</label> <input type="email" name="email" placeholder="이메일 주소" autocomplete="email" id="id_email"></p>
+                              <p><label for="id_password1">비밀번호:</label> <input type="password" name="password1" placeholder="비밀번호" autocomplete="new-password" required="" id="id_password1"></p>
+                              <p><label for="id_password2">비밀번호 (확인):</label> <input type="password" name="password2" placeholder="비밀번호 (확인)" required="" id="id_password2"></p>
+                                
+                                <button type="submit" disabled>회원가입 »</button>
+                              </form>
+                              <br><br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>      
+
+          <!-- Footer area-->
+          <div class="footer-area">
+            <div class="footer">
+              <div class="container">
+                <div class="row">
+                  <h3>고려대학교 HRD 산학협력단 빅데이터 교육</h3>
+                  <p>
+                    Korea HRD. Sejong Big-Data. 『Kwag Unil, Kim do-young, Sim myeong-jin, Pyeon do-jun』
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class='footer-copy text-center'>
+            <div class="container">
+              <div class="row">
+                <div class="pull-left">
+                  <span>Korea-HRD:Rainbow, All rights reserved 2021  </span>
+                </div>
+      
+                <div class="bottom-menu pull-right">
+                  <ul>
+                    <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">위로가기</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div> 
+          </div>
+
+         <script src="/static/js/modernizr-2.6.2.min.js"></script>
+
+        <script src="/static/js/jquery-1.10.2.min.js"></script> 
+        <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/static/js/bootstrap-select.min.js"></script>
+        <script src="/static/js/bootstrap-hover-dropdown.js"></script>
+
+        <script src="/static/js/easypiechart.min.js"></script>
+        <script src="/static/js/jquery.easypiechart.min.js"></script>
+
+        <script src="/static/js/owl.carousel.min.js"></script>
+        <script src="/static/js/wow.js"></script>
+
+        <script src="/static/js/icheck.min.js"></script>
+        <script src="/static/js/price-range.js"></script>
+
+        <script src="/static/js/main.js"></script>
+
+    </body>
+</html>

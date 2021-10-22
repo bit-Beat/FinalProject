@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+  <head>
+    <link rel="stylesheet" href="../../static/css/css.css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>2조 Rainbow. 『신혼부부 임대주택 최적입지 선정 사이트』</title>
+
+    <meta name="description" content="GARO is a real-estate template" />
+    <meta name="author" content="Kimarotec" />
+    <meta
+      name="keyword"
+      content="html5, css, bootstrap, property, real-estate theme , bootstrap template"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link
+      rel="hosrtcut icon"
+      href="/static/img/icon/favi.ico"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="/static/img/icon/favi.ico" type="image/x-icon" />
+
+    <!-- <link rel="stylesheet" href="/staticcss/normalize.css"> -->
+    <link rel="stylesheet" href="/static/css/normalize.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/css/fontello.css" />
+    <link
+      href="/static/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+      rel="stylesheet"
+    />
+    <link href="/static/fonts/icon-7-stroke/css/helper.css" rel="stylesheet" />
+    <link href="/static/css/animate.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" href="/static/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/icheck.min_all.css" />
+    <link rel="stylesheet" href="/static/css/price-range.css" />
+    <link rel="stylesheet" href="/static/css/owl.carousel.css" />
+    <link rel="stylesheet" href="/static/css/owl.theme.css" />
+    <link rel="stylesheet" href="/static/css/owl.transitions.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/responsive.css" />
+  </head>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+  <div id="preloader">
+    <div id="status">&nbsp;</div>
+  </div>
+    <nav class="navbar navbar-default">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navigation"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"
+              ><img src="/static/img/lovehouse.jpg" alt=""/></a>
+          </div>
+  
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse yamm" id="navigation">
+            <div class="button navbar-right">
+              <button
+                class="navbar-btn nav-button wow bounceInRight login"
+                data-wow-delay="0.45s"
+              >
+              <li class="nav-item">
+                {% if user.is_authenticated %} <!--{# 유저가 로그인 중이면 #} -->
+                <a href="/logout/" class="nav-link">로그아웃</a>
+                {% else %}
+                <a href="/loginregister/" class="nav-link">로그인</a>
+                {% endif %}
+              </button>
+            </div>
+            <ul class="main-nav nav navbar-nav navbar-right">
+              {% if user.is_authenticated %} {# 유저가 로그인 중이면 #}
+              <li class="wow fadeInDown" data-wow-delay="0.5s">
+                {% if user.is_staff == 1 %}
+                  <a><span style="color:#fdc600;">[관리자] </span> {{user.username}}님 안녕하세요</a>
+                {% else %}
+                <a>{{user.username}}님 안녕하세요</a>
+                {% endif %}
+              </li>
+              {% else %}
+              <li class="wow fadeInDown" data-wow-delay="0.5s">
+                <a></a>
+              </li>
+              {% endif %}
+              <li class="wow fadeInDown" data-wow-delay="0.2s">
+                <a class="" href="/selection/">입지선정</a>
+              </li>
+              <li class="wow fadeInDown" data-wow-delay="0.3s">
+                <a class="" href="/news/5/">뉴스</a>
+              </li>
+              <li class="wow fadeInDown" data-wow-delay="0.3s">
+                <a class="" href="/blog/">게시판</a>
+              </li>
+              <li class="wow fadeInDown" data-wow-delay="0.5s">
+                <a href="/contact/">연락망</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="board_wrap">
+
+        <div class="board_title">
+            <strong>게시판</strong>
+            <p style="padding-top: 10px;">신혼부부를 위한 의견을 남겨주세요.</p>
+        </div>
+
+        <div class="board_list_wrap">
+            <div class='board_list'>
+                <div class="top">
+                    <div class="num">번호</div>
+                    <div class="title">제목</div>
+                    <div class="writer">작성일</div>
+                    <div class="date">글쓴이</div>
+                    <div class="count">조회</div>
+                </div>
+
+                <div>
+                    {% for notice in notices %}
+                    <div class="num" style="background-color: rgba(250, 247, 214, 0.61);"><td>{{notice.id}}</td></div>
+                    <div class="title" style =" text-align: center; background-color: rgba(250, 247, 214, 0.61);">
+                        <td><a href="{%url 'notice' notice.id%}">{{notice.title}}</a></td>
+                    </div>
+                    <div class="date" style="font-size: 12px; background-color: rgba(250, 247, 214, 0.61);"><td>{{notice.date}}</td></div>
+                    <div class="writer" style="background-color: rgba(250, 247, 214, 0.61);"><td>{{notice.name}}</td></div>
+                    <div class="count" style="background-color: rgba(250, 247, 214, 0.61);">{{notice.hit}}</div>
+                    {% endfor %}
+                    {% if blog_list %}
+                    {% for blog in blog_list %}
+                    <div class="num"><td>{{blog.id}}</td></div>
+                    <div class="title" style =" text-align: center;"><td><a style="color:#cfcfcf;" href="{%url 'detail' blog.id%}">{{blog.title}}</a></td></div>
+                    <div class="date" style="font-size: 12px;"><td>{{blog.pub_date}}</td></div>
+                    <div class="writer"><td>{{blog.writer}}</td></div>
+                    <div class="count">{{blog.hit}}</div>
+                    {% endfor %}
+                    {% else %}
+                    <p>작성된 글이 없습니다.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="pull-right">
+              <div class="bt_wrap">
+                {% if user.is_staff == 1%}
+                  <a href="{% url 'notice_register' %}">공지사항 등록</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                  <a href="{% url 'new' %}" class="nav-link">등록</a>
+                  {% else %}
+                  <a href="/loginregister/" class="nav-link">로그인시 등록이 가능합니다.</a>
+                {% endif %}
+              </div>
+            </div>
+        </div>
+
+        <div class="bt_wrap">
+            <div class="pagination">
+              <ul>
+                {% if blog_list.has_previous %}
+                    <li><a class="abutton" href="?page=1">맨 앞으로</a></li>
+                    <li><a class="abutton" href="?page={{ blog_list.previous_page_number }}">이전</a></li>
+                {% endif %}
+                {% for page in blog_list.paginator.page_range %}
+                    {% if page >= blog_list.number|add:-2 and page <= blog_list.number|add:2 %}
+                    <li class="{% if page == blog_list.number %}current{% endif %}">
+                        <a href="?page={{ page }}">{{ page}}</a>
+                    </li>
+                    {% elif page >= blog_list.number|add:-3 and page <= blog_list.number|add:3 %}
+                    {% endif %}
+                {% endfor %}
+                {% if blog_list.has_next %}
+                    <li><a class="abutton" href="?page={{ blog_list.next_page_number }}">다음</a></li>
+                    <li><a class="abutton" href="?page={{ blog_list.paginator.num_pages }}">맨 뒤로</a></li>
+                {% endif %}
+              </ul>
+            </div>            
+        </div>
+    </div>
+
+    <div class="footer-area">
+        <div class="footer">
+          <div class="container">
+            <div class="row">
+              <h3>고려대학교 HRD 산학협력단 빅데이터 교육</h3>
+              <p>
+                Korea HRD. Sejong Big-Data. 『Kwag Unil, Kim do-young, Sim
+                myeong-jin, Pyeon do-jun』
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='footer-copy text-center'>
+        <div class="container">
+          <div class="row">
+            <div class="pull-left">
+              <span>Korea-HRD:Rainbow, All rights reserved 2021  </span>
+            </div>
+  
+            <div class="bottom-menu pull-right">
+              <ul>
+                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">위로가기</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> 
+      </div>
+  
+      <script src="/static/js/modernizr-2.6.2.min.js"></script>
+      <script src="/static/js/jquery-1.10.2.min.js"></script>
+      <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+      <script src="/static/js/bootstrap-select.min.js"></script>
+      <script src="/static/js/bootstrap-hover-dropdown.js"></script>
+      <script src="/static/js/easypiechart.min.js"></script>
+      <script src="/static/js/jquery.easypiechart.min.js"></script>
+      <script src="/static/js/owl.carousel.min.js"></script>
+      <script src="/static/js/wow.js"></script>
+      <script src="/static/js/icheck.min.js"></script>
+      <script src="/static/js/price-range.js"></script>
+      <script src="/static/js/main.js"></script>
+      <script>
+        window.history.forward();
+        function noBack(){window.history.forward();}
+      </script>
+</body>
+</html>
